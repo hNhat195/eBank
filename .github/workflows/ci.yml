@@ -22,8 +22,9 @@ jobs:
         image: postgres
         # Provide the password for postgres
         env:
-          POSTGRES_PASSWORD: secret
-          POSTGRES_USER: root
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 1952001
+          POSTGRES_PORT: 5431
           POSTGRES_DB: simple_bank
         # Set health checks to wait until postgres has started
         options: >-
