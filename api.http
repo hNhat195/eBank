@@ -2,9 +2,9 @@ POST http://localhost:8080/accounts
 Content-Type: application/json
 
 {
-  "Owner": "yffdim",
+  "Owner": "NhatLe",
   "Balance": 1000,
-  "Currency": "EUR"
+  "Currency": "USD"
 }
 
 ###
@@ -12,6 +12,7 @@ GET http://localhost:8080/accounts/100
 
 ###
 GET http://localhost:8080/accounts?page_id=1&page_size=5
+Authorization: Bearer v2.local.IZupd0qCJAj8QzzrXNvCMehfOh7CEc12HDE3Ok46KYr9_8RLwuFBzGh1G3Kt7lF7fPyESl_9AEzup_7c9j89pG0d1ttafmfBjuxp4jcharlL1h_ZAnTb7lOwMQC54RcJLrf0ue4Nyys3FkjTl_zxWf9OzFV-ABAO2Z5jNXcPIpTDk3Cxs3O0k-G-ZGD0JQO_MBWgS03crfmYT__mPIqxPhqo5QnNaXnfAzTr0fXVsIDfYZKzx9SFxE6MDMZUDCAvulF35I-PltM.bnVsbA
 
 ###
 POST http://localhost:8080/transfer
