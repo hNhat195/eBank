@@ -1,0 +1,27 @@
+version: "1.0"
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1952001
+      - POSTGRES_DB=simple_bank
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "simple_bank", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    environment:
+      - DB_SOURCE=postgresql://postgres:1952001@postgres:5432/simple_bank?sslmode=disable
+    depends_on:
+      - postgres
+    entrypoint: ["/app/wait-for.sh", "postgres:5432", "--", "/app/start.sh"]
+    command: ["/app/main"]
