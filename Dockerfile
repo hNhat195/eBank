@@ -11,12 +11,14 @@ RUN curl -L https://github.com/golang-migrate/migrate/releases/download/v4.14.1/
 FROM alpine:3.14
 WORKDIR /app
 
-COPY --from=builder /app/main /app/main
-COPY --from=builder /app/migrate.linux-amd64 /app/migrate
-COPY app.env /app/app.env
-COPY start.sh /app/start.sh
-COPY wait-for.sh /app/wait-for.sh
+COPY --from=builder /app/main .
+COPY --from=builder /app/migrate.linux-amd64 ./migrate
+COPY app.env .
+COPY start.sh .
+COPY wait-for.sh .
 COPY db/migration /app/db/migration
+RUN chmod +x ./start.sh
+RUN chmod +x ./wait-for.sh
 
 EXPOSE 8080
 
