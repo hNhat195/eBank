@@ -2,18 +2,17 @@ apiVersion: networking.k8s.io/v1
 kind: IngressClass
 metadata:
   name: nginx
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   controller: k8s.io/ingress-nginx
-
 ---
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
-metadata: 
-  name: simple-bank-api-ingress
-spec: 
+metadata:
+  name: simple-bank-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt 
+spec:
   ingressClassName: nginx
   rules:
   - host: "api.lucid.id.vn"
@@ -29,4 +28,4 @@ spec:
   tls:
   - hosts:
     - api.lucid.id.vn
-    secretName: simple-bank-api-cert
+    secretName: simple-bank-api-tls
