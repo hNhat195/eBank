@@ -18,12 +18,12 @@ func TestJWTMaker(t *testing.T) {
 	issuedAt := time.Now()
 	expiredAt := issuedAt.Add(duration)
 
-	token, payload, err := maker.CreateToken(username, duration)
+	token, _, err := maker.CreateToken(username, duration)
 	require.NoError(t, err)
 	require.NotEmpty(t, token)
-	require.NotEmpty(t, payload)
+	// require.NotEmpty(t, payload)
 
-	// payload, err := maker.VerifyToken(token)
+	payload, err := maker.VerifyToken(token)
 	require.NoError(t, err)
 	require.NotEmpty(t, payload)
 	require.Equal(t, username, payload.Username)
