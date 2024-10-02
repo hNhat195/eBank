@@ -20,7 +20,6 @@ func NewStore(db *sql.DB) Store {
 		db:      db,
 		Queries: New(db),
 	}
-
 }
 
 func (store *SQLStore) execTx(ctx context.Context, fn func(*Queries) error) error {

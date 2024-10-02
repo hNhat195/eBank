@@ -3,7 +3,6 @@ package gapi
 import (
 	db "github.com/nhat195/simple_bank/db/sqlc"
 	"github.com/nhat195/simple_bank/pb"
-
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
