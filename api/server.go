@@ -5,6 +5,7 @@ import (
 
 	"github.com/nhat195/simple_bank/token"
 	"github.com/nhat195/simple_bank/util"
+	"github.com/nhat195/simple_bank/worker"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
@@ -14,10 +15,11 @@ import (
 
 // Server serves HTTP requests for our banking service.
 type Server struct {
-	config     util.Config
-	store      db.Store
-	router     *gin.Engine
-	tokenMaker token.Maker
+	config          util.Config
+	store           db.Store
+	router          *gin.Engine
+	tokenMaker      token.Maker
+	taskDistributor worker.TaskDistributor
 }
 
 // NewServer creates a new HTTP server and set up routing.
@@ -32,6 +34,7 @@ func NewServer(config util.Config, store db.Store) (*Server, error) {
 		store:      store,
 		config:     config,
 		tokenMaker: tokenMaker,
+		// taskDistributor: taskDistributor,
 	}
 
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
